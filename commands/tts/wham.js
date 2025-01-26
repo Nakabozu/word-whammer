@@ -26,7 +26,7 @@ import {
 import { dirname, join } from "path";
 import { createReadStream } from "fs";
 import { fileURLToPath } from "url";
-import say from "say";
+import { Say } from "say";
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,6 +48,7 @@ export const data = new SlashCommandBuilder()
 export const execute = async (
   /** @type {ChatInputCommandInteraction} */ interaction
 ) => {
+  const say = new Say(process.env.SAY_ENV);
   const player = createAudioPlayer();
   const voiceConn = getVoiceConnection(interaction.guildId);
   if (!voiceConn?.subscribe) {
@@ -63,7 +64,7 @@ export const execute = async (
     return;
   }
   voiceConn.subscribe(player);
-
+  
   await new Promise((resolve, reject) => {
     say.export(
       interaction?.options?.getString("words"),
