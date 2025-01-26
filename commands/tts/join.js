@@ -118,18 +118,18 @@ Members:`,
     /////////////////////////////
     // GENERATING A VOICE FILE //
     /////////////////////////////
-    say.export(
-      "Ready to WHAM some words boss!",
-      null,
-      1.3,
-      joinPath(__dirname, "join.mp3"),
-      (err) => {
-        if (err) {
-          return console.error(err);
-        }
-      }
-    );
-    console.log(`${cT}Generated ${buT}"join.mp3"${ansiR}`);
+    // say.export(
+    //   "Ready to WHAM some words boss!",
+    //   null,
+    //   1.3,
+    //   joinPath(__dirname, "join.mp3"),
+    //   (err) => {
+    //     if (err) {
+    //       return console.error(err);
+    //     }
+    //   }
+    // );
+    // console.log(`${cT}Generated ${buT}"join.mp3"${ansiR}`);
     ////////////////////////
     // PLAYING VOICE FILE //
     ////////////////////////
@@ -144,12 +144,13 @@ Members:`,
       }
     });
 
-    const audioResource = createAudioResource(joinPath(__dirname, "join.mp3"), {
-      inputType: StreamType.Arbitrary,
-    });
-    console.log(`${cT}audioResource${buT} - ${ansiR}`, audioResource);
-    player.play(audioResource);
-    console.log(`${cT}played${buT} audioResource${ansiR}`);
+    // He can say something silly if you uncomment this
+    // const audioResource = createAudioResource(joinPath(__dirname, "join.mp3"), {
+    //   inputType: StreamType.Arbitrary,
+    // });
+    // console.log(`${cT}audioResource${buT} - ${ansiR}`, audioResource);
+    // player.play(audioResource);
+    // console.log(`${cT}played${buT} audioResource${ansiR}`);
 
     await interaction.reply({
       content: `Ready to wham some words in ${voiceChannel.name}`,

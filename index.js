@@ -10,6 +10,9 @@ import {
   MessageFlags,
 } from "discord.js";
 
+// Give Google Cloud Text-to-Speech access to the environment variables
+process.env.GOOGLE_APPLICATION_CREDENTIALS = './word-whammer.json';
+
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
