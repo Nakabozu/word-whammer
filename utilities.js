@@ -37,3 +37,5 @@ export const voiceEnum = {
       "Theo": "en-US-Standard-I",
       "Edwin": "en-US-Standard-J",
 }
+
+global.currentVoice = "en-US-Standard-B";

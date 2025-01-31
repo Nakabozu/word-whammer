@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { ChatInputCommandInteraction, MessageFlags } from "discord.js";
-import { ansiR, cT, voiceEnum } from "../../utilities.js";
-import { addVoice, deleteVoices } from "../../db.js";
+import { ansiR, cT, } from "../../utilities.js";
+// import { addVoice, deleteVoices } from "../../db.js";
 
 //////////////////////////////////////////////////////////////////////
 //             discord.js Embedded Message documentation            //
@@ -72,10 +72,11 @@ export const execute = async (
   // DB Pull //
   /////////////
   // console.log(`${cT}Clearing database of voices${ansiR}`);
-  deleteVoices();
+  // deleteVoices();
   // console.log(`${cT}Adding new voice to DB${ansiR}`);
-  addVoice(interaction.options.getString("voice"));
-
+  // addVoice(interaction.options.getString("voice"));
+  global.currentVoice = interaction.options.getString("voice");
+  
   await interaction.reply({
     content: `New voice will wham, and welcome to the jam! (${interaction.options.getString(
       "voice"

@@ -28,7 +28,7 @@ import { writeFile } from "fs";
 import { fileURLToPath } from "url";
 import { Say } from "say";
 import gtts from "@google-cloud/text-to-speech";
-import { getAllVoices } from "../../db.js";
+// import { getAllVoices } from "../../db.js";
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -69,13 +69,13 @@ export const execute = async (
   ////////////////////////
   // #region GOOGLE TTS //
   ////////////////////////
-  let voice =  "en-US-Standard-B";
-  await new Promise((resolve, reject) => {
-    getAllVoices((rows) => {
-      voice = rows?.[0]?.voice ?? "en-US-Standard-B";
-      resolve();
-    });
-  });
+  let voice = global.currentVoice ?? "en-US-Standard-B";
+  // await new Promise((resolve, reject) => {
+  //   getAllVoices((rows) => {
+  //     voice = rows?.[0]?.voice ?? "en-US-Standard-B";
+  //     resolve();
+  //   });
+  // });
   const client = new gtts.TextToSpeechClient();
   const request = {
     input: { text: interaction?.options?.getString("words") },
