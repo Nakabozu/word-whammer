@@ -3,16 +3,17 @@
 // const path = require('node:path');
 // require('dotenv').config();
 
-import { dirname, join } from "path";
+import { resolve, dirname, join } from "path";
 import { readdirSync } from "fs";
 import { REST, Routes } from 'discord.js';
 import { fileURLToPath, pathToFileURL } from 'url';
+import dotenv from 'dotenv';
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const envPath = path.resolve(__dirname, '.env'); 
+const envPath = resolve(__dirname, '.env'); 
 dotenv.config({ path: envPath });
 
 const clientId = process.env.CLIENT_ID;
@@ -26,12 +27,12 @@ const commandFolders = readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
 	// Grab all the command files from the commands directory you created earlier
-	const commandsPath = path.join(foldersPath, folder);
+	const commandsPath = join(foldersPath, folder);
 	const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 	// Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
+		const filePath = join(commandsPath, file);
+		const command = await import(pathToFileURL(filePath).href);
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
 		} else {

@@ -76,36 +76,36 @@ export const data = new SlashCommandBuilder()
     );
 
     export const execute = async(/** @type {ChatInputCommandInteraction} */ interaction) => {
-    console.log(`${cT}Executing join command${ansiR}`);
+    // console.log(`${cT}Executing join command${ansiR}`);
     ////////////////////////
     // AUDIO PLAYER SETUP //
     ////////////////////////
     const player = createAudioPlayer();
-    console.log(`${cT}Player Created${ansiR}`);
+    // console.log(`${cT}Player Created${ansiR}`);
     //////////////////////////////
     // VOICE CHANNEL CONNECTION //
     //////////////////////////////
-    console.log(`${wB}${bT}JOINING!${ansiR}`);
+    // console.log(`${wB}${bT}JOINING!${ansiR}`);
     const voiceChannel = interaction.options.getChannel("channel");
-    console.log(`${cT}voiceChannel details Obtained${ansiR}`);
+    // console.log(`${cT}voiceChannel details Obtained${ansiR}`);
 
     let voiceConnection = joinVoiceChannel({
       channelId: voiceChannel.id,
       guildId: interaction.guildId,
       adapterCreator: interaction.guild.voiceAdapterCreator,
     });
-    console.log(`${cT}voiceConnection established${ansiR}`);
+    // console.log(`${cT}voiceConnection established${ansiR}`);
 
     voiceConnection.subscribe(player);
-    console.log(`${cT}voiceConnection has subscribed${ansiR}`);
+    // console.log(`${cT}voiceConnection has subscribed${ansiR}`);
 
     if (voiceChannel.members.size <= 0) {
       // Bot counts as 1
-      console.log(
-        `${rB}${wT}No active listeners in the voice channel.${ansiR}
-Members:`,
-        voiceChannel.members
-      );
+      // console.log(
+//         `${rB}${wT}No active listeners in the voice channel.${ansiR}
+// Members:`,
+//         voiceChannel.members
+//       );
       await interaction.reply({
         content: `I'm in ${voiceChannel.name}, but there are no active listeners!`,
         ephemeral: true,
@@ -114,7 +114,7 @@ Members:`,
       voiceConnection.destroy();
       return;
     }
-    console.log(`${cT}voiceConnection${buT} - ${ansiR}`, voiceConnection);
+    // console.log(`${cT}voiceConnection${buT} - ${ansiR}`, voiceConnection);
     /////////////////////////////
     // GENERATING A VOICE FILE //
     /////////////////////////////
@@ -135,11 +135,11 @@ Members:`,
     ////////////////////////
     player.on("stateChange", (oldState, newState) => {
       {
-        console.log(
-          `Player state changed from ${oldState.status} to ${newState.status}`
-        );
+        // console.log(
+        //   `Player state changed from ${oldState.status} to ${newState.status}`
+        // );
         if (newState.status === "autopaused") {
-          console.log(`${yT}Player is autopaused.${ansiR}`);
+          // console.log(`${yT}Player is autopaused.${ansiR}`);
         }
       }
     });
@@ -157,6 +157,6 @@ Members:`,
       // HIDE THE COMMAND FROM THE PUBLIC
       flags: MessageFlags.Ephemeral, // Makes the message only visible to the user that triggered it
     });
-    console.log(`${cT}Replied to interaction${ansiR}`);
+    // console.log(`${cT}Replied to interaction${ansiR}`);
     return;
   };

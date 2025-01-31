@@ -2,10 +2,10 @@
   "name": "word-whammer",
   "version": "1.0.0",
   "description": "The bot that whams some words into voice comms!",
-  "main": "index.js",
+  "main": "whammer.js",
   "type": "module",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "node whammer.js",
     "deploy": "node deploy-commands.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +22,7 @@
     "dotenv": "^16.4.5",
     "ffmpeg-static": "^5.2.0",
     "opusscript": "^0.0.8",
-    "say": "^0.16.0"
+    "say": "^0.16.0",
+    "sqlite3": "^5.1.7"
   }
 }

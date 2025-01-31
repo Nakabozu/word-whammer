@@ -16,3 +16,24 @@ export const mB = "\x1b[45m";
 export const cB = "\x1b[46m";
 export const wB = "\x1b[47m";
 export const ansiR = "\x1b[00m";
+
+export const voiceEnum = {
+      "Elizabeth": "en-GB-Standard-A",
+      "Noah": "en-GB-Standard-B",
+      "Fleur": "en-GB-Standard-C",
+      "Archibald": "en-GB-Standard-D",
+      "Isobel": "en-GB-Standard-F",
+      "Georgina": "en-GB-Standard-N",
+      "Roscoe": "en-GB-Standard-O",
+
+      "Desmond": "en-US-Standard-A",
+      "Andrew": "en-US-Standard-B",
+      "Liora": "en-US-Standard-C",
+      "Jake": "en-US-Standard-D",
+      "Lucy": "en-US-Standard-E",
+      "Tiffany": "en-US-Standard-F",
+      "Madeline": "en-US-Standard-G",
+      "Sophie": "en-US-Standard-H",
+      "Theo": "en-US-Standard-I",
+      "Edwin": "en-US-Standard-J",
+}

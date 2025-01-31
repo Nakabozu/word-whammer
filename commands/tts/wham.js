@@ -28,6 +28,7 @@ import { writeFile } from "fs";
 import { fileURLToPath } from "url";
 import { Say } from "say";
 import gtts from "@google-cloud/text-to-speech";
+import { getAllVoices } from "../../db.js";
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -68,6 +69,13 @@ export const execute = async (
   ////////////////////////
   // #region GOOGLE TTS //
   ////////////////////////
+  let voice =  "en-US-Standard-B";
+  await new Promise((resolve, reject) => {
+    getAllVoices((rows) => {
+      voice = rows?.[0]?.voice ?? "en-US-Standard-B";
+      resolve();
+    });
+  });
   const client = new gtts.TextToSpeechClient();
   const request = {
     input: { text: interaction?.options?.getString("words") },
@@ -75,7 +83,7 @@ export const execute = async (
     // https://cloud.google.com/text-to-speech/docs/reference/rest/Shared.Types/StreamingSynthesizeConfig#VoiceSelectionParams
     // Supported Voices:
     // https://cloud.google.com/text-to-speech/docs/voices
-    voice: { languageCode: "en-US", ssmlGender: "NEUTRAL", name: "en-US-Standard-B" },
+    voice: { languageCode: "en-US", ssmlGender: "NEUTRAL", name: voice },
     audioConfig: { audioEncoding: "MP3" },
   };
   const [response] = await client.synthesizeSpeech(request);
@@ -85,7 +93,7 @@ export const execute = async (
         console.error("Error writing file:", err);
         reject(err);
       } else {
-        console.log("Audio content written to file: output.mp3");
+        // console.log("Audio content written to file: output.mp3");
         resolve();
       }
     });
