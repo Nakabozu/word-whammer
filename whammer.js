@@ -9,9 +9,10 @@ import {
   GatewayIntentBits,
   MessageFlags,
 } from "discord.js";
+import { initializeAi } from "./googleAi.js";
 
 // Give Google Cloud Text-to-Speech access to the environment variables
-process.env.GOOGLE_APPLICATION_CREDENTIALS = './word-whammer.json';
+process.env.GOOGLE_APPLICATION_CREDENTIALS = "./word-whammer.json";
 
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -22,6 +23,10 @@ const envPath = resolve(__dirname, ".env");
 config({ path: envPath });
 
 const token = process.env.TOKEN;
+
+//#region Init Google Gemini
+initializeAi();
+//#endregion
 
 // Create a new client instance
 const client = new Client({

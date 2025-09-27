@@ -59,7 +59,6 @@ export const data = new SlashCommandBuilder()
 
         { name: "Himari", value: "ja-JP-Standard-B" },
         { name: "Nagi", value: "ja-JP-Standard-D" },
-
       )
       .setRequired(true)
   );
